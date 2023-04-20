@@ -22,13 +22,16 @@ public class Main {
         jepConf.addIncludePaths(javaDirectory.getAbsolutePath()  + "/pl/lechowicz");
         jepConf.addIncludePaths(pythonFolder);
         SharedInterpreter.setConfig(jepConf);
-        SharedInterpreter subInterp = new SharedInterpreter();
-        // run each function from the .py doc I
-        subInterp.eval("import jep_path as p");
-        subInterp.eval("res_spacy = p.run_spacy_nlp('Apple is looking at buying U.K. startup for $1 billion')");
-        ArrayList result = subInterp.getValue("res_spacy", ArrayList.class);
-        for (Object item:result) {
-            System.out.println(item.toString());
+        try(SharedInterpreter subInterp = new SharedInterpreter();){
+            // run each function from the .py doc I
+            subInterp.eval("import jep_path as p");
+            subInterp.eval("res_spacy = p.run_spacy_nlp('Apple is looking at buying U.K. startup for $1 billion')");
+            var result = subInterp.getValue("res_spacy", ArrayList.class);
+            for (Object item:result) {
+                System.out.println(item.toString());
+            }
+        } catch (JepException ex) {
+            System.err.println("Problem with Python side:"  + ex);
         }
     }
 }
