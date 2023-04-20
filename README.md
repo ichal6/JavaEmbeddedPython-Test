@@ -10,5 +10,5 @@ Run code wrote in Python 3.10 (for example AI library) on Java 17.
 
 ### For run project, you should set environment:
 ```bash
-export LD_LIBRARY_PATH=""/usr/local/lib/python<python version>/dist-packages"$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/usr/local/lib/python<python version>/dist-packages"$LD_LIBRARY_PATH
 ```
