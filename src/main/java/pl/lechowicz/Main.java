@@ -25,7 +25,7 @@ public class Main {
         try(SharedInterpreter subInterp = new SharedInterpreter();){
             // run each function from the .py doc I
             subInterp.eval("import jep_path as p");
-            subInterp.eval("res_spacy = p.run_spacy_nlp('Apple is looking at buying U.K. startup for $1 billion')");
+            subInterp.eval("res_spacy = p.generate_summary( \"/home/michael/Documents/VariousProjects/JavaEmbeddedPython/src/main/java/pl/lechowicz/msft.txt\", 2)");
             var result = subInterp.getValue("res_spacy", ArrayList.class);
             for (Object item:result) {
                 System.out.println(item.toString());
